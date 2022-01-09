@@ -192,12 +192,29 @@ class ZhFeedbackLocalizations extends FeedbackLocalizations {
   String get navigate => '导航';
 }
 
+/// Default english localization
+class SvFeedbackLocalizations extends FeedbackLocalizations {
+  /// Creates a [EnFeedbackLocalizations].
+  const SvFeedbackLocalizations();
+
+  @override
+  String get submitButtonText => 'Skicka';
+
+  @override
+  String get feedbackDescriptionText => 'Vad är fel?';
+
+  @override
+  String get draw => 'Rita';
+
+  @override
+  String get navigate => 'Navigera';
+}
+
 // coverage:ignore-end
 
 /// This is a localization delegate, which includes all of the localizations
 /// already present in this library.
-class GlobalFeedbackLocalizationsDelegate
-    extends LocalizationsDelegate<FeedbackLocalizations> {
+class GlobalFeedbackLocalizationsDelegate extends LocalizationsDelegate<FeedbackLocalizations> {
   /// Creates a [GlobalFeedbackLocalizationsDelegate].
   const GlobalFeedbackLocalizationsDelegate();
 
@@ -211,6 +228,7 @@ class GlobalFeedbackLocalizationsDelegate
     const Locale('fr'): const FrFeedbackLocalizations(),
     const Locale('ar'): const ArFeedbackLocalizations(),
     const Locale('ru'): const RuFeedbackLocalizations(),
+    const Locale('sv'): const RuFeedbackLocalizations(),
     const Locale('uk'): const UkFeedbackLocalizations(),
     const Locale('tr'): const TrFeedbackLocalizations(),
     const Locale('zh'): const ZhFeedbackLocalizations(),
@@ -234,8 +252,7 @@ class GlobalFeedbackLocalizationsDelegate
     final languageLocale = Locale(locale.languageCode);
     // We only support language codes for now
     if (_supportedLocales.containsKey(languageLocale)) {
-      return SynchronousFuture<FeedbackLocalizations>(
-          _supportedLocales[languageLocale]!);
+      return SynchronousFuture<FeedbackLocalizations>(_supportedLocales[languageLocale]!);
     }
     // The default is english
     return SynchronousFuture(const EnFeedbackLocalizations());
